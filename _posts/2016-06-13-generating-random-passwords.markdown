@@ -67,3 +67,20 @@ do
 done
 {% endhighlight %}
 
+Well, testing shows I did save some time here (passwords.sh is first script, pwgen is the second):
+
+{% highlight bash }
+time sh passwords.sh > /dev/null
+real    0m0.611s
+user    0m0.149s
+sys    0m0.115s
+
+time sh pwgen.sh > /dev/null
+real    0m0.029s
+user    0m0.008s
+sys    0m0.017s
+
+{% endhighlight %} 
+
+If you're ever interested in speeding things up, not repeatedly seeding
+an RNG is a really good start. Calling rand in a loop is painful.
