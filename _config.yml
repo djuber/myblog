@@ -6,10 +6,12 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Dan's Sedentary Life
+title: Dan's Life
 email: djuber@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Stuff I learned today. Things I'm thinking about. Tips I want to share.
+  Stuff I learned today.
+  Things I'm thinking about.
+  Tips I want to share.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.djuber.tk" # the base hostname & protocol for your site
 twitter_username: danieluber
