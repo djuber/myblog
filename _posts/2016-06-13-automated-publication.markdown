@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Automated Publication"
-date:   2016-06-13 12:35 -0500
+date:   2016-06-13 00:35 -0500
 categories:  labnotes 
 ---
 
