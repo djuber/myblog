@@ -69,7 +69,7 @@ done
 
 Well, testing shows I did save some time here (passwords.sh is first script, pwgen is the second):
 
-{% highlight bash }
+{% highlight bash %}
 time sh passwords.sh > /dev/null
 real    0m0.611s
 user    0m0.149s
