@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "ACLs in Linux"
+date:   2015-04-30 20:30:00
+categories: labnotes
+---
+
+# ACL Overview
+[RedHat Docs](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Storage_Administration_Guide/acls-setting.html) cover this.
+
+See also the [manpage](http://linux.die.net/man/5/acl)
+
+# ACL Support
+ACL will only work if the partition is mounted with acl as a mount option
+(ext4), or the filesystem always supports acls (xfs?). 
+
+# ACL Tools
+
+* getfacl
+* setfacl

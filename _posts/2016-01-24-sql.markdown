@@ -1,0 +1,147 @@
+---
+title: Essential SQL
+layout: post
+category: sql
+---
+
+# Define a Table
+
+Every product will have different features available, particularly
+with respect to datatypes and the level of constraints you can set
+during a create table statement. However, the standard includes much
+of what you need on a day to day basis. As an example, lets create
+three tables, orders, items, and customers.
+
+{% highlight sql %}
+create table customers (
+       customer_number integer primary key, -- some dialects like postgres allow a serial type here.
+       first_name varchar(20) not null,
+       last_name varchar(20) not null,
+       street_address varchar(128) not null,
+       city varchar(32) not null,
+       state character(2) not null,
+       zip character(5) not null
+       );
+
+create table items (
+       item_id integer primary key, -- therefore must be unique and not null
+       description text not null
+       );
+
+create table orders (
+       customer_number integer references customers (customer_number) not null,
+       item_id integer references items (item_id) not null,
+       qty integer not null default 1
+       );
+{% endhighlight %}
+
+[postgres manual](http://www.postgresql.org/docs/current/static/sql-createtable.html ) or
+[mysql manual]( https://dev.mysql.com/doc/refman/5.7/en/create-table.html ) describe the `CREATE TABLE` statement in more detail.
+
+Some basic facts about the above, there are some arbitrary limits in the definition, states have a two character code, zip codes are five digits,names are limited by length, as are street addresses.  In the case of the order, there is a default of 1 for quantity, this makes some sense. There are not null prescriptions, the default behavior
+in sql is to allow columns to be unspecified. The reasoning behind this is twofold, either that represents unknown information, we're sure Tony James has a gender, but unclear which it was, so a gender field would allow a null
+to represent a missing value, or represents an empty or not-applicable set. The danger in the first is that it's difficult
+to reason about the proper outcome, the danger in the second is that it's a violation of [first normal form]( https://en.wikipedia.org/wiki/First_normal_form ).
+
+# Insert data into a table
+
+So now we have some tables, lets populate one with a few values. First, let's create two customers:
+{% highlight sql %}
+insert into customers (customer_number, first_name, last_name, street_address, city, state, zip)
+values (1, 'Dan', 'Uber', '53 W Jackson Blvd, Ste 450', 'Chicago', 'IL', '60604'),
+       (2, 'Victor', 'Hugo', 'Hauteville House', 'St Helier', 'JE', '00000');
+{% endhighlight %}
+
+Usually the `INSERT` statement will give an output that shows the number of rows affected (should be two here). Quick takeaway,
+since each column was set not null by definition, we need to add to each of them. The
+list of column names before values is not strictly needed, if ommitted, you will need to know what order
+the create table listed the columns in. If nothing else, it serves as very clear documentation of what you intend to do.
+It is possible to add columns later to a table, and code that generates inserts as above with explicit
+column names will be able to weather a reorganization, but code that counted on the implicit ordering of columns will be
+more likely to need adjustment. Let the database system worry about column ordering.
+
+With any luck, you'll see a table like this one when you confirm you inserted the data:
+{% highlight sql %}
+ select * from customers;
+customer_number   | first_name | last_name |       street_address       |   city    | state |  zip
+ -----------------+------------+-----------+----------------------------+-----------+-------+-------
+                1 | Dan        | Uber      | 53 W Jackson Blvd, Ste 450 | Chicago   | IL    | 60604
+                2 | Victor     | Hugo      | Hauteville House           | St Helier | JE    | 00000
+{% endhighlight %}
+
+So now that Victor and I have accounts at the store, we should be lured in by attractive pricing on fabulous items.
+Let's create a few baubles to hawk:
+
+{% highlight sql %}
+insert into items (item_id, description) values
+       (1, 'Yelmo de Mambrino - bronze basin with a chin strap to keep you dry'),
+       (2, 'Collier de la Reine - fine diamond necklace, sadly this did not protect Marie Antoinette from the guillotine');
+{% endhighlight %}
+
+At this point, I realize our items table is missing a short name, only has a fulltext description. If all we
+sell are apples and tomatoes, then the description is the short name. A cursory glance above shows this is not necessarily
+the case.
+
+# Alter Table to improve design
+
+We can add two possible fixes. We can drop the items table and create a new one, or we can just add a new column. Because
+of the foreign key references to `item_id` in the orders table, we'll just add a name column:
+
+{% highlight sql %}
+alter table items add column name varchar(128);
+-- now we want to fill in the names:
+update items set name='Yelmo de Mambrino' where item_id=1;
+update items set name='Collier de la Reine' where item_id=2;
+-- now we want to enforce every item be named going forward:
+alter table items alter column name set not null;
+alter table items add unique (name);
+{% endhighlight %}
+
+So that wasn't too bad. I haven't tested that in mysql, it might be different. Basic ideas, you can add columns apart from
+create table statements using alter table statements, you can add constraints (not null column, unique column) using alter table.
+And most importantly, [`UPDATE`](http://www.postgresql.org/docs/9.5/static/sql-update.html) allows you to change values in a row. Here I used the item_id because I only had two rows, for larger tables you would likely want an update to follow a specific select option. 
+
+# Update data in the table
+Let's remove just one more bit of redundancy, right now the item name is in two places (name, description). Let's fix the descriptions by cutting the part before that dash:
+
+{% highlight sql %}
+-- showing how we get to the final step, let's experiment with substring to find the magic answer
+-- first, use a regex to get the part from the dash forward
+select substring(description from '-\ .*$') from items;
+                                        substring
+------------------------------------------------------------------------------------------
+ - bronze basin with a chin strap to keep you dry
+ - fine diamond necklace, sadly this did not protect Marie Antoinette from the guillotine
+(2 rows)
+
+-- second, use a range to start at the third letter (first two are dash, space):
+select substring(substring(description from '-\ .*$') from 3) from items;
+                                       substring                                        
+----------------------------------------------------------------------------------------
+ bronze basin with a chin strap to keep you dry
+ fine diamond necklace, sadly this did not protect Marie Antoinette from the guillotine
+(2 rows)
+
+-- Now, update all rows to use description as description
+update items
+       set description=
+       substring(
+		  substring(description from '-\ .*$')
+		from 3);
+
+-- double check our work:
+select description from items;
+                                      description                                       
+----------------------------------------------------------------------------------------
+ bronze basin with a chin strap to keep you dry
+ fine diamond necklace, sadly this did not protect Marie Antoinette from the guillotine
+(2 rows)
+
+{% endhighlight %}
+
+So now, after we altered items to have three columns, we can insert using the three column format
+{% highlight sql %}
+insert into items (item_id, name, description)
+       values (3, 'Bálsamo de Fierabrás',
+       'this mixture can heal your wounds, or make you forget them in your pains');
+{% endhighlight %}

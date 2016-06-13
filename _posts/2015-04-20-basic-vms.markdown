@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "Basic Virtual Machine Setup"
+date:   2015-04-20 18:50:00
+categories:  labnotes infrastructure
+---
+
+I configured Centos7 Minimal on a base image server1 (the installer, anaconda, is pretty slow).
+I setup the routing and resolvers, since the dhcp for the internal 192.168.122.0/24 virtual bridge network
+didn't correctly supply a working dns server. Once that was working, I updated the hundreds of needed packages
+from Centos 7.0 to the current Centos 7.1, and took the first step in cloning this image. The server was set with 1GB Ram, 1 CPU,
+and 20GB  disk. "Clone" is a pretty fast operation on these small images. It does not update the hostname or any other network details,
+you'll either need to interrupt startup, deal with some quirks, or use other tools to convert these.
+
+Server1 became Client1 and Outsider (in Jang's book, these are the two example.com and one example.org hosts).
+These should be on two different networks. Right now, they're all three on a shared default bridged vlan (192.168.122.0), but I created two
+additional host-only private lans 192.168.100.0 and 192.168.200.0. I added a second network interface to the two example.com (server and client).
+I added the 192.168.200.0 network as a second adapter on the outsider machine.
+I confirmed I'm not able to ping from outsider to server1, but client and server are connecting on the private interface.
+
+I think this might be a good way to go to manage this going forward, [open vswitch](http://www.openvswitch.org/).
+
+I will admit, the 'faster reboots' war cry of systemd is completely well founded. If I removed the grub delay, the server would be at a login
+prompt in a few seconds. Waiting 5s for confirmation doubles the boot time! Working with kvm, when I deal with Virtuozzo at work and would have thought
+xen was the right way to go otherwise is an interesting experience. KVM is on the exam, so it's worth it to get started early.
