@@ -7,7 +7,7 @@ category: apache mod_rewrite
 
 Expensive phones will request double resolution images when they're available, and fallback to low res images when not. They will send a HEAD request first, then a GET if they get a 200 in the HEAD. Lets stop an expensive 404 from running on sites that have index.php as a fallback for all 404's, which can be really expensive:
 
-{% highlight %}
+{% highlight null %}
 # strip retina requests if missing
 RewriteCond  %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} ^(.*)(@2x\.\w+)$ [NC]
