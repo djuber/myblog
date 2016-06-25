@@ -10,17 +10,24 @@ Pretty ugly. Couple the fact that I had to look up in info or apropos every elis
 function other than "concat" with my unwillingness to experiment with
 newlines as data and you get a fairly unattractive text builder.
 
+This really isn't super necessary:
 
 {% highlight lisp %}
 (defun new-post-read-args (prompt)
   (read-string prompt))
 {% endhighlight %}
 
-
+This and date-string 
 {% highlight lisp %}
 (defun new-post-today-string ()
    (format-time-string "%Y-%m-%d" (current-time)))
+
+(defun new-post-date-string ()
+  (concat "date: "
+	  (new-post-today-string)
+	  (format-time-string "%H:%M -0500" (current-time))))
 {% endhighlight %}
+
 
 {% highlight lisp %}
 (defun new-post-make-file-name (title)
@@ -29,13 +36,6 @@ newlines as data and you get a fairly unattractive text builder.
    "-"
    (replace-regexp-in-string " " "-" title)
    ".markdown"))
-{% endhighlight %}
-
-{% highlight lisp %}
-(defun new-post-date-string ()
-  (concat "date: "
-	  (new-post-today-string)
-	  (format-time-string "%H:%M -0500" (current-time))))
 {% endhighlight %}
 
 {% highlight lisp %}
