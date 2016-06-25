@@ -27,3 +27,4 @@ level of integration between the programmer and the running programs is unparall
 For lisp, obviously slime + emacs is the killer app. macroexpand-1 and macroexpand
 tied to keybindings, M-. jumping live to any functions definition (even in the core language)
 led me to the feeling that merely static languages better have a lot to offer.
+
