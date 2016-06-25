@@ -1,7 +1,7 @@
 ---
 layout: post
-date:  2016-06-25 14:08 -0500
 title:  "testing the new-post function"
+date:  2016-06-25 14:08 -0500
 categories: emacs
 ---
 
