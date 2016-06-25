@@ -6,6 +6,7 @@ categories:
 ---
 
 {% highlight lisp %}
+
 (defun new-post-read-args (prompt)
   (read-string prompt))
 
