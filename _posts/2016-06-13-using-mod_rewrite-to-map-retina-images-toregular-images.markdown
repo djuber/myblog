@@ -15,10 +15,3 @@ RewriteRule (.*)@2x\.(\w+) $1\.$2 [PT]
 {% endhighlight %}
 
 This needs to go above any redirects to the fallback resource.  If you have some of your files retina ready, you're set, this will not downgrade actual files, just shunt 404 requests to the ultimate location.
-
-So back to rails. Coming from common lisp + macros, the ideas bundled in
-Bundler (gem management), rails generate "X" for scaffolding, migrations as
-code, and other power features really attact me. As a person who is really interested in
-SQL as a core technology, the idea of giving over control to an ORM still creeps me
-out. The other ideas that are limited are the way that migrations and models are
-separate from each other (in django, the model and the table more clearly represent each other), but the routes seem more straightforward than the regex based django routes. In the same vein, I can definitely see how the django routes regular expressions dispatch will be more able to pass very general patterns to the controller. 
