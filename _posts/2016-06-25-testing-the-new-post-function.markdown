@@ -24,12 +24,16 @@ categories: emacs
    "-"
    (replace-regexp-in-string " " "-" title)
    ".markdown"))
+{% endhighlight %}
 
+{% highlight lisp %}
 (defun new-post-date-string ()
   (concat "date: "
 	  (new-post-today-string)
 	  (format-time-string "%H:%M -0500" (current-time))))
+{% endhighlight %}
 
+{% highlight lisp %}
 (defun new-post ()
   (interactive)
   (let ((title (new-post-read-args "Post Title: ")))
