@@ -5,7 +5,7 @@ title: Second Test of new-post
 categories: emacs
 ---
 
-Okay, confirmed that newline literals +\n+ are interpreted as intended:
+Okay, confirmed that newline literals `n` are interpreted as intended:
 
 {% highlight lisp %}
 (defun new-post ()
