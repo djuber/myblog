@@ -34,4 +34,6 @@ Bundler (gem management), rails generate "X" for scaffolding, migrations as
 code, and other power features really attact me. As a person who is really interested in
 SQL as a core technology, the idea of giving over control to an ORM still creeps me
 out. The other ideas that are limited are the way that migrations and models are
-separate from each other (in django, the model and the table more clearly represent each other), but the routes seem more straightforward than the regex based django routes. In the same vein, I can definitely see how the django routes regular expressions dispatch will be more able to pass very general patterns to the controller. 
+separate from each other (in django, the model and the table more clearly represent each other), but the routes seem more straightforward than the regex based django routes. In the same vein, I can definitely see how the django routes regular expressions dispatch will be more able to pass very general patterns to the controller.
+
+So [rails](http://api.rubyonrails.org/) is great, and feels like magic. Django's manage.py is very similar to the rails script. 
