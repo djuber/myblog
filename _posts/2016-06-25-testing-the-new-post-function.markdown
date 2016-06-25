@@ -6,7 +6,6 @@ categories:
 ---
 
 {% highlight lisp %}
-
 (defun new-post-read-args (prompt)
   (read-string prompt))
 
@@ -19,7 +18,6 @@ categories:
    "-"
    (replace-regexp-in-string " " "-" title)
    ".markdown"))
-
 
 (defun new-post ()
   (interactive)
@@ -40,5 +38,4 @@ categories:
   (insert   "categories: ")
   (newline)
   (insert "---")))
-
 {% endhighlight %}
