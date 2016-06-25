@@ -17,7 +17,7 @@ This really isn't super necessary:
   (read-string prompt))
 {% endhighlight %}
 
-This and date-string 
+This and date-string build parts I want in file names, and in the yaml heading.
 {% highlight lisp %}
 (defun new-post-today-string ()
    (format-time-string "%Y-%m-%d" (current-time)))
@@ -28,7 +28,7 @@ This and date-string
 	  (format-time-string "%H:%M -0500" (current-time))))
 {% endhighlight %}
 
-
+Let's make a spaces to dashes translation, and take on our date and extension:
 {% highlight lisp %}
 (defun new-post-make-file-name (title)
   (concat
@@ -38,6 +38,7 @@ This and date-string
    ".markdown"))
 {% endhighlight %}
 
+Prompt for a name, create a file, fill in some blanks helpfully:
 {% highlight lisp %}
 (defun new-post ()
   (interactive)
@@ -58,4 +59,15 @@ This and date-string
   (insert   "categories: ")
   (newline)
   (insert "---")))
+{% endhighlight %}
+
+
+It spits this out in the head of the file
+{% highlight yaml %}
+---
+layout: post
+title:  testing the new-post function
+date:  2016-06-25 14:08 -0500
+categories: 
+---
 {% endhighlight %}
