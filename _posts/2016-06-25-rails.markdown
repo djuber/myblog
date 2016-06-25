@@ -1,0 +1,29 @@
+---
+layout: post
+date: 2016-06-25 02:35 -05:00
+title: "Learning ruby and ruby on rails"
+category: ruby
+---
+
+I completed the Johns Hopkins Introduction to Rails, and I'm working through the
+Intro to Active Record course. So far, all the caveats about MOOCs and automatic
+grading aside, the projects and test cases are meaningful.
+
+I am reading Elegant Ruby (2015), it's a special treat. One of the things that
+impressed me about the ruby community was testing, I remember 8th Light
+demoing tdd at chipy a long time ago, someone with about 2-3 months of experience
+with python (coming from ruby) was live coding a bowling kata, and on another
+projector the mentor was doing the same program in ruby. At the time I don't know if I
+had worked in smalltalk.
+
+I can say that coming from smalltalk, ruby looked refreshing. Having dug a bit more
+into it, I think that things like blocks and symbols make a huge difference.
+If I say that the two languages I most enjoyed were common lisp and smalltalk,
+and that I've enjoyed C, and worked in Python and C++, it explains a bit of my slant. For
+me the magic of smalltalk (Pharo and Squeak) was in its discoverability. Pharo is
+open source writ large, you can click on anything. You can ask the system at runtime
+to open a class browser to the code that defines the message you received. This
+level of integration between the programmer and the running programs is unparalleled.
+For lisp, obviously slime + emacs is the killer app. macroexpand-1 and macroexpand
+tied to keybindings, M-. jumping live to any functions definition (even in the core language)
+led me to the feeling that merely static languages better have a lot to offer.
