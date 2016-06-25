@@ -5,6 +5,11 @@ date:  2016-06-25 14:08 -0500
 categories: emacs
 ---
 
+So this is the first time I've tried to make a "new file from template" type function.
+Pretty ugly. Couple the fact that I had to look up in info or apropos every elisp
+function other than "concat" with my unwillingness to experiment with
+newlines as data and you get a fairly unattractive text builder.
+
 
 {% highlight lisp %}
 (defun new-post-read-args (prompt)
