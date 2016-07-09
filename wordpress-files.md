@@ -283,6 +283,24 @@ This did work, and ```rails db:seed``` populated the versions at my [development
 Since I'm about 3 hours in right now, time to get some weekend beach hours in. My next steps will be validation (wordpress must have version), remapping urls to version (wordpress/4.5.3/ instead of wordpress/215/), nesting resources so that files belong to wordpress, and making an even bigger, uglier seeds.rb file.
 
 ## validation
+Let's just follow the [guide](http://guides.rubyonrails.org/active_record_validations.html). Set WordPress to require version to be not null. 
+
+```ruby
+class Wordpress < ApplicationRecord
+  has_many :core_files
+  validates :version, presence:	true
+end
+```
+
+While we're at it, lets make sure versions are unique (I'm getting really close to making this a key, and "not null unique" is really close.
+
+```ruby
+class Library < ApplicationRecord
+  has_many :books
+  validates_associated :books
+end
+```
+
 
 ## using version string as url
 
