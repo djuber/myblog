@@ -295,9 +295,9 @@ end
 While we're at it, lets make sure versions are unique (I'm getting really close to making this a key, and "not null unique" is really close.
 
 ```ruby
-class Library < ApplicationRecord
-  has_many :books
-  validates_associated :books
+ class Wordpress < ApplicationRecord
+  has_many :core_files
+  validates :version, presence: true, uniqueness: true
 end
 ```
 
