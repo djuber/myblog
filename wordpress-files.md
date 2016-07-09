@@ -264,7 +264,7 @@ So that worked. Right now I have two options. I can figure out how to get around
 ```
 actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
 ```
-or I can go back to seeds.rb, which seems like it's going to be so much easier. So lets rewrite our loop to output a seeds.rb style list of version and dates, rather than watching the stack traces continue. So here's a cheap (and horribly unattractive) seeds generation:
+or I can go back to seeds.rb, which seems like it's going to be so much easier. So lets rewrite our loop to output a seeds.rb style list of version and dates, rather than watching the stack traces continue. So here's a cheap (and [horribly unattractive](https://raw.githubusercontent.com/djuber/wpfiles/146219198801985d1f9fc8926c61e05c9cc58876/db/seeds.rb) seeds generation:
 
 ## populating data with seeds.rb
 
