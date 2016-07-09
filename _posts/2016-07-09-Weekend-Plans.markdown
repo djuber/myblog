@@ -117,5 +117,5 @@ Okay, so we now have what I think we want. We want to map these into a release v
 		    awk '{print $2}' )
     echo $basename $dateline;
 done |
-sort -k 2 -n
+sort -k 2 -n > versions-release.txt
 ```
