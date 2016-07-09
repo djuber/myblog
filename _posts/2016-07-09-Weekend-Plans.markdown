@@ -14,17 +14,17 @@ First, let's gather all the release files (there are only so many because this i
 
 ```bash
 lynx -dump https://wordpress.org/download/release-archive/ |
-grep tar.gz$ |
-grep [0-9]\.\ htt
+   grep tar.gz$ |
+   grep [0-9]\.\ htt
 ```
 
 Maybe we don't care about the betas.
 
 ```bash
 lynx -dump https://wordpress.org/download/release-archive/ |
-grep tar.gz$ |
-grep [0-9]\.\ htt |
-grep -Ev 'beta|RC'
+   grep tar.gz$ |
+   grep [0-9]\.\ htt |
+   grep -Ev 'beta|RC'
 ```
 
 That gives 211 dotted versions from 0.71-gold to the current 4.5.3. That's a manageable data set, I think. Lets grab all the links for those. We'll process them as part of the data acquisition later.
@@ -137,3 +137,7 @@ This gives a file looking like something I can use for importing into the databa
 4.5.2 2016-05-06
 4.5.3 2016-06-21
 ```
+
+So now what. Rails aside, we want to get these version strings, and release dates, into the database. Directly concerning rails, while Active Record wants an integer/serial id column, we want our urls to look like /wordpress/4.5.3/core_files/index.php and not like /wordpress/201/core_files/89, which is okay if you are making a lot more round trips -- fetch available versions, get id number for the one you need, fetch core files, and get details for the ones you need. For a human friendly view, wordpress/4.5/core_files/index.php looks correct 
+
+The next step was to fire up a development copy on the server, since running this from my desk was useful, until all the data I want is on the server. So I'll be using the server (where I have all the files) as the development instance. It's in [github](ttps://github.com/djuber/wpfiles) now, so shuttling between the desk and server should be okay. 
