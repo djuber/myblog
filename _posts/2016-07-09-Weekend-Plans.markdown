@@ -165,6 +165,8 @@ do
 done
 ```
 
+Rails console messages were pretty clear it did not want anything to do with these random POST requests:
+
 ```
 Started POST "/wordpress/" for 192.138.20.248 at 2016-07-09 15:05:30 -0500
 Cannot render console from 192.138.20.248! Allowed networks: 216.80.113.156, 127.0.0.0/127.255.255.255, ::1
@@ -180,5 +182,75 @@ ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticit
 actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:195:in `handle_unverified_request'
 actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
 actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:218:in `verify_authenticity_token'
+```
+
+
+So inspecting the /wordpress/new page, there are those fields in the request, utf8, authenticity_token, and commit="Create Wordpress", the first two as hidden inputs , the last as the commit action (submit button). Do I need to grab this authenticity token for each post? Should I be using seeds.rb instead for this (you might say yes, you might be right). Let's continue down the resisting path and loop this curl one more time.
+
+Grab the token:
+
+```bash
+[~/wp-files]# curl -s beta-reduction.com:3000/wordpress/new | grep authenticity_token
+    <meta name="csrf-param" content="authenticity_token" />
+<form class="new_wordpress" id="new_wordpress" action="/wordpress" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="DHgA5Wynz0ULvKYaHoFs8T6pcHBqNJ5MoLlFmoacf7dS+q2yDGAhQPWAft1ZN1eqjdCP7tdp/UWZleVPoHvwng==" />
+
+get_authenticity_token() {
+    curl -s beta-reduction.com:3000/wordpress/new |
+    grep authenticity_token |
+    cut -d \" -f 22 |
+    grep =
+}
+
+for line in $(sed 's/ /=/' versions-release.txt) ;
+do
+   version=$(echo $line | cut -f 1 -d =);
+   year=$(echo $line | cut -f 2 -d = | cut -f 1 -d -);
+   month=$(echo $line | cut -f 2 -d = | cut -f 2 -d -);
+   day=$(echo $line | cut -f 2 -d = | cut -f 3 -d - );
+   curl -v -X POST \
+   -d "version=$version" \
+   -d "release_date(1i)=$year" \
+   -d "release_date(2i)=$month" \
+   -d "release_date(3i)=$day" \
+   -d "authenticity_token=$(get_authenticity_token)" \
+   -d "utf8=&#x2713;" \
+   beta-reduction.com:3000/wordpress/
+done
+```
+
+Rails can't be fooled? Did the cookie disappear or some similar silliness? 
 
 ```
+Started POST "/wordpress/" for 192.138.20.248 at 2016-07-09 15:24:28 -0500
+Cannot render console from 192.138.20.248! Allowed networks: 216.80.113.156, 127.0.0.0/127.255.255.255, ::1
+Processing by WordpressesController#create as */*
+  Parameters: {"version"=>"3.7.13", "release_date(1i)"=>"2016", "release_date(2i)"=>"02", "release_date(3i)"=>"02", "authenticity_token"=>
+"WzbIiE7lBzvKbU4vb4P61CCc1uc563 wuM mQU9Erha8RYUburGdnSsRsmxaJGqkc1LBIoiuSx8VB6X8XAoqow==", "utf8"=>"", "#x2713;"=>nil}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+```
+
+Redoing my test and checking the console:
+
+```
+Started POST "/wordpress" for 216.80.113.156 at 2016-07-09 15:27:12 -0500
+Processing by WordpressesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yKlW3YPN+OS6RrSDeXaV4Y4i7TVEMtIo2/ZIN3dPCQicBiqJSNSPc76lVq6YDaYv1aNtsGxd+FtgGm4u0xXC9g==", "wordpress"=>{"version"=>"0.71-gold", "release_date(1i)"=>"2003", "release_date(2i)"=>"6", "release_date(3i)"=>"9"}, "commit"=>"Create Wordpress"}
+   (0.1ms)  begin transaction
+  SQL (0.4ms)  INSERT INTO "wordpresses" ("version", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["version", "0.71-gold"], ["release_date", Mon, 09 Jun 2003], ["created_at", 2016-07-09 20:27:12 UTC], ["updated_at", 2016-07-09 20:27:12 UTC]]
+   (17.9ms)  commit transaction
+Redirected to http://beta-reduction.com:3000/wordpress/2
+Completed 302 Found in 24ms (ActiveRecord: 18.4ms)
+````
+
+So that worked. Right now I have two options. I can figure out how to get around "Request Forgery Protection" from the trace:
+```
+actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
+```
+or I can go back to seeds.rb, which seems like it's going to be so much easier. So lets rewrite our loop to output a seeds.rb style list of version and dates, rather than watching the stack traces continue.
+
+
