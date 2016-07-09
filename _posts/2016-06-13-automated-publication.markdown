@@ -14,7 +14,7 @@ cd ~/src/myblog
 
 # Build and upload
 jekyll build # --incremental
-rsync -Pauv _site/ :/home/blog/public_html/ -e "ssh blog@djuber.tk -p 22222"
+rsync -Pauv _site/ blog.djuber.tk:/home/blog/public_html/
 
 # checkin changes and send to github
 git add .
