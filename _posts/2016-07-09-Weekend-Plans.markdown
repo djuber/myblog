@@ -119,3 +119,21 @@ Okay, so we now have what I think we want. We want to map these into a release v
 done |
 sort -k 2 -n > versions-release.txt
 ```
+
+This gives a file looking like something I can use for importing into the database:
+
+```
+4.2.9 2016-06-21
+4.3.2 2016-01-06
+4.3.3 2016-02-02
+4.3.4 2016-05-06
+4.3.5 2016-06-21
+4.4.1 2016-01-06
+4.4.2 2016-02-02
+4.4.3 2016-05-06
+4.4.4 2016-06-21
+4.5.1 2016-04-26
+4.5 2016-04-12
+4.5.2 2016-05-06
+4.5.3 2016-06-21
+```
