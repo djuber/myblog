@@ -301,12 +301,56 @@ While we're at it, lets make sure versions are unique (I'm getting really close 
 end
 ```
 
-Let's take a first pass at core_files now (as I think about uniqueness, I'm tempted to think file_name is a misnomer, and file_path is correct).
+Let's take a first pass at core_files now (as I think about uniqueness, I'm tempted to think file_name is a misnomer, and file_path is correct). What's missing here is an indication that there should be a valid version that a file belongs to. But while I've still got that nagging feeling in my mind, I'll migrate the schema to rename the column.
 
 ```ruby
 class CoreFile < ApplicationRecord
   belongs_to :wordpress
-  validates :file_name,	presence: true
+  validates :file_name, presence: true
+  validates :size, presence: true
+  validates :md5sum, presence: true
+end
+```
+
+### migration - rename column
+' rails g migration rename_core_files_file_name_to_file_path' gives an empty migration file, so we need to fill it in):
+
+```
+class RenameCoreFilesFileNameToFilePath < ActiveRecord::Migration[5.0]
+  def change
+    rename_column :core_files, :file_name, :file_path
+  end
+end
+```
+Run db:migrate, and dump the schema just to confirm:
+
+```
+$ rails db:migrate
+== 20160709230842 RenameCoreFilesFileNameToFilePath: migrating ================
+-- rename_column(:core_files, :file_name, :file_path)
+   -> 0.1998s
+== 20160709230842 RenameCoreFilesFileNameToFilePath: migrated (0.1999s) =======
+
+$ rails db
+SQLite version 3.7.17 2013-05-20 00:56:22
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite> .sch
+CREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
+CREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" \
+datetime NOT NULL);
+CREATE TABLE "wordpresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "version" varchar, "release_date" date, "created_at" datet\
+ime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE TABLE "core_files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "file_path" varchar, "mdsum" varchar, "size" integer, "cont\
+ent" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+```
+
+Now we can fix up the validation code in the model:
+
+```ruby
+class CoreFile < ApplicationRecord
+  belongs_to :wordpress
+  validates :file_path, presence: true,	uniqueness: true
   validates :size, presence: true
   validates :md5sum, presence: true
 end
@@ -315,6 +359,11 @@ end
 ## using version string as url
 
 ## nesting files
+```
+undefined local variable or method `new_core_file_path' for #<#<Class:0x007f35907736f8>:0x007f3590772320>
+Did you mean?  new_wordpress_core_file_path
+```
 
+in  app/views/core_files/index.html.erb
 ## populating files data
 
