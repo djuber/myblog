@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Weekend Plans
-date:  2016-07-09 15:00:00 -0500
+date:  2016-07-09 13:00:00 -0500
 categories: journal
 ---
 
