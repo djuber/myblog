@@ -28,6 +28,7 @@ grep -Ev 'beta|RC'
 ```
 
 That gives 211 dotted versions from 0.71-gold to the current 4.5.3. That's a manageable data set, I think. Lets grab all the links for those. We'll process them as part of the data acquisition later.
+
 ```bash
 mkdir wp-files
 cd wp-files
@@ -40,6 +41,7 @@ do
   wget $url
 done
 ```
+
 Hint: This is much faster on the server than on your desk.
 
 Not terribly bad, not terribly light either:
