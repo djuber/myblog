@@ -264,3 +264,4 @@ done >> ../src/wpfiles/db/seeds.rb
 
 This did work, and ```rails db:seed``` populated the versions at my [development site](http://beta-reduction.com:3000/wordpress). Now we can focus on nesting the core_files resource into the view, and controller.
 
+Since I'm about 3 hours in right now, time to get some weekend beach hours in.
