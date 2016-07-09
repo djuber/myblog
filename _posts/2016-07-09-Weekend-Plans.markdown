@@ -234,7 +234,7 @@ Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
 ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
 ```
 
-Redoing my test and checking the console:
+Redoing my test via the browser, and checking the console:
 
 ```
 Started POST "/wordpress" for 216.80.113.156 at 2016-07-09 15:27:12 -0500
@@ -251,6 +251,15 @@ So that worked. Right now I have two options. I can figure out how to get around
 ```
 actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
 ```
-or I can go back to seeds.rb, which seems like it's going to be so much easier. So lets rewrite our loop to output a seeds.rb style list of version and dates, rather than watching the stack traces continue.
+or I can go back to seeds.rb, which seems like it's going to be so much easier. So lets rewrite our loop to output a seeds.rb style list of version and dates, rather than watching the stack traces continue. So here's a cheap (and horribly unattractive) seeds generation:
 
+```bash
+ [~/wp-files]# for line in $(sed 's/ /=/' versions-release.txt) ;
+ do
+    version=$(echo $line | cut -f 1 -d =);
+    date=$(echo $line | cut -f 2 -d = );
+    echo Wordpress.create\!\(version: \""$version"\", release_date: \""$date"\"\)
+done >> ../src/wpfiles/db/seeds.rb
+```
 
+This did work, and ```rails db:seed``` populated the versions at my [development site](http://beta-reduction.com:3000/wordpress).
