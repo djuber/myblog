@@ -1,6 +1,6 @@
 ---
-layout: post
-title:  Weekend Plans
+layout: page
+title:  Wordpress Files
 date:  2016-07-09 13:00:00 -0500
 categories: journal
 ---
@@ -262,4 +262,5 @@ or I can go back to seeds.rb, which seems like it's going to be so much easier. 
 done >> ../src/wpfiles/db/seeds.rb
 ```
 
-This did work, and ```rails db:seed``` populated the versions at my [development site](http://beta-reduction.com:3000/wordpress). Now we can focus on nesting the core_files resource into the view, and controller. 
+This did work, and ```rails db:seed``` populated the versions at my [development site](http://beta-reduction.com:3000/wordpress). Now we can focus on nesting the core_files resource into the view, and controller.
+
