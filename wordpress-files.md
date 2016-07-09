@@ -279,4 +279,14 @@ done >> ../src/wpfiles/db/seeds.rb
 
 This did work, and ```rails db:seed``` populated the versions at my [development site](http://beta-reduction.com:3000/wordpress). Now we can focus on nesting the core_files resource into the view, and controller.
 
+## interlude
 Since I'm about 3 hours in right now, time to get some weekend beach hours in. My next steps will be validation (wordpress must have version), remapping urls to version (wordpress/4.5.3/ instead of wordpress/215/), nesting resources so that files belong to wordpress, and making an even bigger, uglier seeds.rb file.
+
+## validation
+
+## using version string as url
+
+## nesting files
+
+## populating files data
+
