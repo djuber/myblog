@@ -301,6 +301,16 @@ While we're at it, lets make sure versions are unique (I'm getting really close 
 end
 ```
 
+Let's take a first pass at core_files now (as I think about uniqueness, I'm tempted to think file_name is a misnomer, and file_path is correct).
+
+```ruby
+class CoreFile < ApplicationRecord
+  belongs_to :wordpress
+  validates :file_name,	presence: true
+  validates :size, presence: true
+  validates :md5sum, presence: true
+end
+```
 
 ## using version string as url
 
