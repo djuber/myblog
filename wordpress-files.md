@@ -29,6 +29,8 @@ lynx -dump https://wordpress.org/download/release-archive/ |
 
 That gives 211 dotted versions from 0.71-gold to the current 4.5.3. That's a manageable data set, I think. Lets grab all the links for those. We'll process them as part of the data acquisition later.
 
+## download
+
 ```bash
 mkdir wp-files
 cd wp-files
@@ -69,6 +71,8 @@ So I added a release date, I could fudge and grab this from the readme, or grab 
 
 Let's peel these open to get more information from them. This runs super fast upto about 2.8, until it slowed down I had imagined a bug in here was skipping the tar step and just creating directories.
 
+## extract
+
 ```bash
 for file in *.tar.gz
 do
@@ -87,6 +91,8 @@ done
 
 Cursory inspection of the file tree suggests that most of the time the archive contained a directory 'wordpress' at the head of the tree, but in some cases (mu releases before 3.0, and the named releases platinum, blakey, and miles, each had wordpress-mu (2.7 to 2.9.2) or wordpress-mu-VERSION (up to 2.6.5) or wordpress-version-NAME (platinum, miles), or the weirder wordpress-VERSION (blakey). I'll fix all of these, since they bother me. Now, no matter how it was packaged, we can have a single expected directory name, wordpress-VERSION/wordpress/
 
+## tidy
+
 ```bash
  for file in *.tar.gz
  do
@@ -102,6 +108,8 @@ done
 ```
 
 Okay, so we now have what I think we want. We want to map these into a release version string ("4.5.2" or "0.7.1-gold"), and into a release date. I see ```ls -ld */wordpress``` gives a workable list of dates, lets fiddle just a bit with that. Rather than trying to force ls to be nice (there is a command line option for that), I took stat's output for the modify time:
+
+## versions-release
 
 ```bash
 [~/wp-files]# for dirname in */wordpress
@@ -139,6 +147,8 @@ This gives a file looking like something I can use for importing into the databa
 ```
 
 So now what. Rails aside, we want to get these version strings, and release dates, into the database. Directly concerning rails, while Active Record wants an integer/serial id column, we want our urls to look like /wordpress/4.5.3/core_files/index.php and not like /wordpress/201/core_files/89, which is okay if you are making a lot more round trips -- fetch available versions, get id number for the one you need, fetch core files, and get details for the ones you need. For a human friendly view, wordpress/4.5/core_files/index.php looks correct 
+
+## populating data by trial and error
 
 The next step was to fire up a development copy on the server, since running this from my desk was useful, until all the data I want is on the server. So I'll be using the server (where I have all the files) as the development instance. It's in [github](ttps://github.com/djuber/wpfiles) now, so shuttling between the desk and server should be okay. And if you're me and are whitelisted in the firewall, it's [online](http://beta-reduction.com:3000/).
 
@@ -252,6 +262,8 @@ So that worked. Right now I have two options. I can figure out how to get around
 actionpack (5.0.0) lib/action_controller/metal/request_forgery_protection.rb:223:in `handle_unverified_request'
 ```
 or I can go back to seeds.rb, which seems like it's going to be so much easier. So lets rewrite our loop to output a seeds.rb style list of version and dates, rather than watching the stack traces continue. So here's a cheap (and horribly unattractive) seeds generation:
+
+## populating data with seeds.rb
 
 ```bash
  [~/wp-files]# for line in $(sed 's/ /=/' versions-release.txt) ;
