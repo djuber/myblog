@@ -13,29 +13,33 @@ so a diff can be made (to patch changes back to original state, or identify malw
 First, let's gather all the release files (there are only so many because this includes betas):
 
 ```bash
-
-lynx -dump https://wordpress.org/download/release-archive/ | grep tar.gz$ | grep [0-9]\.\ htt
-
+lynx -dump https://wordpress.org/download/release-archive/ |
+grep tar.gz$ |
+grep [0-9]\.\ htt
 ```
 
 Maybe we don't care about the betas.
 
 ```bash
-
-lynx -dump https://wordpress.org/download/release-archive/ | grep tar.gz$ | grep [0-9]\.\ htt | grep -Ev 'beta|RC'
-
+lynx -dump https://wordpress.org/download/release-archive/ |
+grep tar.gz$ |
+grep [0-9]\.\ htt |
+grep -Ev 'beta|RC'
 ```
 
 That gives 211 dotted versions from 0.71-gold to the current 4.5.3. That's a manageable data set, I think. Lets grab all the links for those. We'll process them as part of the data acquisition later.
 ```bash
 mkdir wp-files
 cd wp-files
-for url in $(lynx -dump https://wordpress.org/download/release-archive/ | grep tar.gz$ | grep [0-9]\.\ htt | grep -Ev 'beta|RC' | awk '{print $2}')
+for url in $(lynx -dump https://wordpress.org/download/release-archive/ |
+    	   	  grep tar.gz$ |
+		  grep [0-9]\.\ htt |
+		  grep -Ev 'beta|RC' |
+		  awk '{print $2}')
 do
   wget $url
 done
 ```
-
 Hint: This is much faster on the server than on your desk.
 
 Not terribly bad, not terribly light either:
