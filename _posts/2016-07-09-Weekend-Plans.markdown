@@ -45,6 +45,7 @@ done
 Hint: This is much faster on the server than on your desk.
 
 Not terribly bad, not terribly light either:
+
 ```
 [~/wp-files]# du -h
  736M	.
