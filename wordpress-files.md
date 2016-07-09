@@ -153,10 +153,13 @@ So now what. Rails aside, we want to get these version strings, and release date
 The next step was to fire up a development copy on the server, since running this from my desk was useful, until all the data I want is on the server. So I'll be using the server (where I have all the files) as the development instance. It's in [github](ttps://github.com/djuber/wpfiles) now, so shuttling between the desk and server should be okay. And if you're me and are whitelisted in the firewall, it's [online](http://beta-reduction.com:3000/).
 
 So how to put all this into the database? As a test I inserted the first version, and checking the logs, I see this was the transaction:
-tarted POST "/wordpress" for 216.80.113.156 at 2016-07-09 14:58:27 -0500
+
+```
+started POST "/wordpress" for 216.80.113.156 at 2016-07-09 14:58:27 -0500
 Processing by WordpressesController#create as HTML
 
 Parameters: {"utf8"=>"✓", "authenticity_token"=>"2V1t4hTnMM8smG2YBzRH4eUNLhU8nS3wzspJxoWjnohnQg0iqiRKvAknd99RfeK+0IgJLZ+7VNwM/aOt/yrzfw==", "wordpress"=>{"version"=>"0.71-gold", "release_date(1i)"=>"2003", "release_date(2i)"=>"6", "release_date(3i)"=>"9"}, "commit"=>"Create Wordpress"}
+```
 
 Let's try to skip the utf8 and authenticity_token, and just put this into curl. My first attempt obviously was a failure:
 
