@@ -36,4 +36,20 @@ do
 done
 ```
 
-Hint: This is much faster on the server than on your desk. 
+Hint: This is much faster on the server than on your desk.
+
+Not terribly bad, not terribly light either:
+```
+[~/wp-files]# du -h
+ 736M	.
+```
+
+So what will this all look like? I'd like to use this as an opportunity to do something useable in rails, and rails 5 came out this week, so I think I'll use rails 5 to make this api. The client code will probably be python, because, well, python is already installed. But the server code could be in cobol for all anyone knows, as long as the product works.
+
+My model will be that there are wordpress versions (```rails g scaffold wordpress version```), and these versions have core files (```rails g scaffold core_file file_name md5sum size:integer content:text```). Lucky for me, these are nested resources, so the following route looks correct (in config/routes.rb):
+
+```ruby
+  resources :wordpresses, path: "wordpress" do
+    resources :core_files
+  end
+```
