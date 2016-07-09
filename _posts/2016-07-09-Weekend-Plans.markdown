@@ -84,3 +84,38 @@ done
 [~/wp-files]# du -hs
 3.4G	.
 ```
+
+Cursory inspection of the file tree suggests that most of the time the archive contained a directory 'wordpress' at the head of the tree, but in some cases (mu releases before 3.0, and the named releases platinum, blakey, and miles, each had wordpress-mu (2.7 to 2.9.2) or wordpress-mu-VERSION (up to 2.6.5) or wordpress-version-NAME (platinum, miles), or the weirder wordpress-VERSION (blakey). I'll fix all of these, since they bother me. Now, no matter how it was packaged, we can have a single expected directory name, wordpress-VERSION/wordpress/
+
+```bash
+ for file in *.tar.gz
+ do
+   wpver=$(echo $file | sed 's/.tar.gz//')
+   pushd $wpver
+   if [ ! -d ./wordpress ]
+   then
+	dirname=$(/bin/ls)
+	mv -v $dirname wordpress
+   fi
+   popd
+done
+```
+
+Okay, so we now have what I think we want. We want to map these into a release version string ("4.5.2" or "0.7.1-gold"), and into a release date. I see ```ls -ld */wordpress``` gives a workable list of dates, lets fiddle just a bit with that. Rather than trying to force ls to be nice (there is a command line option for that), I took stat's output for the modify time:
+
+```bash
+[~/wp-files]# for dirname in */wordpress
+ do
+    details="$(stat $dirname)"
+    basename=$(echo "$details" |
+    		    grep File  |
+		    cut -f 2 -d \‘ |
+		    cut -f 1 -d / |
+		    cut -f 2- -d -  )
+    dateline=$(echo "$details" |
+    		    grep Modify |
+		    awk '{print $2}' )
+    echo $basename $dateline;
+done |
+sort -k 2 -n
+```
