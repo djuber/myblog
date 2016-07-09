@@ -53,10 +53,34 @@ Not terribly bad, not terribly light either:
 
 So what will this all look like? I'd like to use this as an opportunity to do something useable in rails, and [rails 5](http://weblog.rubyonrails.org/2016/6/30/Rails-5-0-final/) came out this week, so I think I'll use rails 5 to make this api. The client code will probably be python, because, well, python is already installed. But the server code could be in cobol for all anyone knows, as long as the product works.
 
-My model will be that there are wordpress versions ```rails g scaffold wordpress version```, and these versions have core files ```rails g scaffold core_file file_name md5sum size:integer content:text```. Lucky for me, these are nested resources, so the following route looks correct (in config/routes.rb):
+My model will be that there are wordpress versions ```rails g scaffold wordpress version release_date:date```, and these versions have core files ```rails g scaffold core_file file_name md5sum size:integer content:text```. Lucky for me, these are nested resources, so the following route looks correct (in config/routes.rb):
 
 ```ruby
   resources :wordpresses, path: "wordpress" do
     resources :core_files
   end
+```
+
+So I added a release date, I could fudge and grab this from the readme, or grab the dates from [WP's Roadmap](https://wordpress.org/about/roadmap/) (for major releases only), or for 2.3 and later, the mtime from the releases download link matches the release date of the file (September 24, 2007). It looks like all of the earlier releases were added to the file server at that time, so the mtime on the archives is not usuable more than 9 years back. Well, I've seen much bigger projects lose information on a grander scale than this, so wordpress looks remarkably stable.
+
+```
+-rw-r--r--  1 sysadmin wheel  870766 Sep 24  2007 wordpress-2.3.tar.gz
+```
+
+Let's peel these open to get more information from them. This runs super fast upto about 2.8, until it slowed down I had imagined a bug in here was skipping the tar step and just creating directories.
+
+```bash
+for file in *.tar.gz
+do
+   wpver=$(echo $file | sed 's/.tar.gz//');
+   mkdir $wpver
+   pushd $wpver
+   tar xf ../$file
+   popd
+done
+```
+
+```bash
+[~/wp-files]# du -hs
+3.4G	.
 ```
