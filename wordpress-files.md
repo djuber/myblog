@@ -365,5 +365,16 @@ Did you mean?  new_wordpress_core_file_path
 ```
 
 in  app/views/core_files/index.html.erb
+
+
 ## populating files data
+
+
+## how to find version information in the wordpress files
+
+From version 1.2 on, there is a file in wp-includes/version.php with a string to denote the wordpress version.  For 1.0 and earlier, there are some oddities. 0.71-gold still had b2-includes/b2vars.php with ```$b2_version = '0.71';```
+
+Version 1.0 scrubbed the b2 names, renaming this path wp-includes/vars.php, with the new variable looking this way: ```$wp_version = '1.0.1';```
+
+Starting in 1.2, we see the vars split by functionality, and a version.php file containing what we are looking for: ```$wp_version = '1.2';```
 
