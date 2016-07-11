@@ -359,6 +359,8 @@ end
 ## using version string as url
 
 ## nesting files
+So once you change the path for the resource, a lot of the generated scaffolding breaks, since it had attached top-level paths in the index, form, and redirects. For example:
+
 ```
 undefined local variable or method `new_core_file_path' for #<#<Class:0x007f35907736f8>:0x007f3590772320>
 Did you mean?  new_wordpress_core_file_path
@@ -367,8 +369,19 @@ Did you mean?  new_wordpress_core_file_path
 in  app/views/core_files/index.html.erb
 
 
+Shaking these out takes a little while, but the error messages are fairly straightforward, and give both a reasonable problem, and a file/method to fix it in, so it's just a little work to reorganize. Critically, this does require adding a reference to the core_files table:
+
+```ruby
+class AddCoreFilesWordpressId < ActiveRecord::Migration[5.0]
+  def change
+    add_reference :core_files, :wordpress, index: true
+  end
+end
+```
+
 ## populating files data
 
+TBD
 
 ## how to find version information in the wordpress files
 
