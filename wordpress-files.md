@@ -372,7 +372,7 @@ in  app/views/core_files/index.html.erb
 Shaking these out takes a little while, but the error messages are fairly straightforward, and give both a reasonable problem, and a file/method to fix it in, so it's just a little work to reorganize. Critically, this does require adding a reference to the core_files table, so the request for  ```@wordpress.core_files``` knows what to do.  
 
 ```ruby
-class AddCoreFilesWordpressId < ActiveRecord::Migration[5.0]
+class AddCoreFilesWordpressId < ActiveRecord::Migration[5.0]x
   def change
     add_reference :core_files, :wordpress, index: true
   end
