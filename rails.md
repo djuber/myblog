@@ -6,7 +6,7 @@ permalink: /rails/
 
 # Notes about Ruby and Ruby on Rails.
 
-[http://rubyonrails.org/doctrine/](Doctrine) has notes about the Principle of Least Surprise. It points to python:
+Ruby on Rails [Doctrine](http://rubyonrails.org/doctrine) has notes about the Principle of Least Surprise. It points to python:
 
     $ python
     >>> exit
