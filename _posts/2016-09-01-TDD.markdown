@@ -1,0 +1,12 @@
+---
+layout: post
+date: 2016-09-01 04:23 -0500
+title: TDD
+categories: 
+---
+I am still working through the 'Rails 4 in Action' book. I'm about 40% in, and the rspec output is starting to flow over the visible height of the terminal window. I understand not only how important the feedback is in determining the code if correct, but how meaningful this is in guiding the work. You think of a feature. You write a test to show what the feature should do. You run the test. It doesn't work. You implement the feature. You run the test. It passes (or you keep working). Once you have that, you loop back to the outside and run all the tests. If there aren't a lot of angry red lines, you have one of those heart skipping a beat moments of elation.
+
+Right now I have this running every ten seconds on the right side of the right monitor (book on the left flap, two editor windows in the center). It's good to be able to save, look left at a long string of green lines, and get back to work. When I started I had this on 30 seconds, trying to optimize the work load. However, 10 seconds feels a lot better, I find I'm not waiting for the tests, they're running for me when I need them.
+
+One thing I really like about this book is how it uses various rspec test types, like describe and feature, it, context, and scenario, to make readable, structured tests. I certainly wouldn't have figured that out just reading the rspec manual, and the Johns Hopkins course worked with describe/it only (they had acceptance tests for the programming projects). I have a feeling that by the time I finish this book I'll be hooked.
+
