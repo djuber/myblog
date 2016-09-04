@@ -20,4 +20,5 @@ Please set the nameservers of your domain/ sub-domain to
 *    freedns4.registrar-servers.com
 *    freedns5.registrar-servers.com
 
-Before I pull the trigger and move the dns nameservers, let's setup the dns (so we don't go dark).
+Before I pull the trigger and move the dns nameservers, let's setup the dns (so we don't go dark). So I clicked on the 'Manage Domain' link on the same page. Unfortunately, I did not see anything about setting up DNS records (some nonsense about redirecting and forwarding domain, parking page, etc). After some poking, I found the "Advanced DNS" section, that allows you to select actual DNS records. It's a one at a time sort of editor, reminiscent of many registrar's Host Records section for creating glue records. There is a filter optio n for the various entries, and they separate A from MX records, so if you have very limited needs it should be fine. I think I'll keep looking, as this looks painful to use.
+
