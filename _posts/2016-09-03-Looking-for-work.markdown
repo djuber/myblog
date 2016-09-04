@@ -14,11 +14,11 @@ put yourself into their pools of talent, they specialized in these skills, so at
 event you were likely to find three to five interviews. I did get job offers every time.
 Some were bad. Some were slightly wrong. I ended up getting two very agreeable job offers on the same day after about two months.
 
-I understand that was a little different. I was very open to relocation at the time. I
+I understand that was a different situation. I was very open to relocation at the time. I
 was single, starting a career after working in the same field for five years. I had a lot
 of expertise that translated well into the tasks these employers were looking for.
 
-I think with development work, it's much harder to guage from a letter or resume
+I think with development work, it's much harder to gauge from a letter or resume
 what sort of person you're about to hire. I understand there are coding interviews
 that involve algorithms work. I've never gotten that kind of an interview before, I think
 I was selling myself short due to a slightly irregular pedigree, and never applied for
