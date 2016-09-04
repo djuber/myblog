@@ -38,3 +38,6 @@ Working through rails 4 in action now. It's a fun read. I like the test first se
 feels a lot like the Percival book for python (djano and selenium to build a task list site).
 I read the book on the train, then reread and work the code on the couch. So by the time
 I'm typing a line, I already have a good idea where I'm going and why. You can see the code as I go at [bitbucket](https://bitbucket.org/daniel_uber/ticketee).
+
+Since I don't have watcher or autotest setup yet, I have been just using a sleep loop to run rspec on the desktop. I'm a bit surprised how slow the startup is. I remember from the coursera course that once the seed data was in place, reseeding the test db for tests was especially bad. I don't look forward to that as this grows. Right now, off the platter disk, it's about 1.5 seconds to read the files, and a few milliseconds to run them. Sometimes I must miss file cache, and startup takes closer to six seconds.
+
