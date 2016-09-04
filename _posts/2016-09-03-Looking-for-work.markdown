@@ -32,4 +32,4 @@ you might get far enough before anyone questions you.
 Working in lighting opened my eyes to the effectiveness of posted signs,
 and the general acceptance once you're on the other side of the door.
 
-I think once I get a little more ruby and rails under my belt, I will start toying with Puppet. We use ansible at work (or, someone else uses ansible, and I know it's there). The other giant project is going to be moving mail from my work vps. See [Mail Overflow](//2016/08/21/Mail-Overflow.html) to see how that worked out.
+I think once I get a little more ruby and rails under my belt, I will start toying with Puppet. We use ansible at work (or, someone else uses ansible, and I know it's there). The other giant project is going to be moving mail from my work vps. See [Mail Overflow](2016/08/21/Mail-Overflow.html) to see how that worked out.
