@@ -22,3 +22,6 @@ Please set the nameservers of your domain/ sub-domain to
 
 Before I pull the trigger and move the dns nameservers, let's setup the dns (so we don't go dark). So I clicked on the 'Manage Domain' link on the same page. Unfortunately, I did not see anything about setting up DNS records (some nonsense about redirecting and forwarding domain, parking page, etc). After some poking, I found the "Advanced DNS" section, that allows you to select actual DNS records. It's a one at a time sort of editor, reminiscent of many registrar's Host Records section for creating glue records. There is a filter optio n for the various entries, and they separate A from MX records, so if you have very limited needs it should be fine. I think I'll keep looking, as this looks painful to use.
 
+Rackspace's cloud dns service advertises import from bind db files. That might be good. Heroku does not have these options, which would have been okay too. "Please note that Amazon Route 53 is not currently available on the AWS Free Tier." says [AWS](https://aws.amazon.com/route53/). That's a shame.
+
+Searching a bit, it looks like Cloudflare is still a safe bet. Cloudns.net has a free offering that doesn't look too crippled (you can't change SOA, but if you're hosting dns there, what do you need?).
