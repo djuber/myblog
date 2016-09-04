@@ -1,0 +1,16 @@
+---
+layout: post
+date: 2016-09-04 04:07 -0500
+title: Rinari
+categories: 
+---
+I tried to like atom. I think it almost was workable. Being built from chrome,
+it has a lot of the same limitations and weird issues as chrome. Particularly with window
+managers, chrome plays a sad second class citizen, and I've never figured out
+why it refuses to hide when I ask. I can get minimize, but not hide, and being unable to properly bury a window is confusing to me. But in the end I kept using emacs. Maybe its
+motor memory of the keys, maybe it's personal choice.
+
+Once you make a decision, you should go all in. I tried to find what tools would make
+ruby plus emacs a winning combination. I still long for something as slick as SLIME or CIDER are, and inferior-python works well enough -- I can send a def block to the interpreter, and interact there. I tried [rinari](http://rinari.rubyforge.org/). So far it looks like it has the tools I need, it starts the webserver, can start both a db console and irb/rails console. I haven't used much more than that, but freeing up my shell for other rails/rake tasks, and git, makes that a pleasure. Without this I would have been starting a terminal session and running rails server within a screen. I think having a buffer running the process is fine (as workable as screen is).
+
+I separately got web-mode setup correctly, which was the missing part in the equation. So right now the Ruby-mode, end, magit, and webmode seem to be the winning combination. A first glance did not uncover a good/easy solution to setup autotest or to handle rspec output well, and I'm still running tests in a shell session. If I magically got rubocop to run as a save-buffer hook, that would be doubly annoying.
