@@ -24,4 +24,5 @@ Before I pull the trigger and move the dns nameservers, let's setup the dns (so 
 
 Rackspace's cloud dns service advertises import from bind db files. That might be good. Heroku does not have these options, which would have been okay too. "Please note that Amazon Route 53 is not currently available on the AWS Free Tier." says [AWS](https://aws.amazon.com/route53/). That's a shame.
 
-Searching a bit, it looks like Cloudflare is still a safe bet. Cloudns.net has a free offering that doesn't look too crippled (you can't change SOA, but if you're hosting dns there, what do you need?).
+Searching a bit, it looks like Cloudflare is still a safe bet. Cloudns.net has a free offering that doesn't look too crippled (you can't change SOA, but if you're hosting dns there, what do you need?). They limit their free offering to three domains (I'll keep beta-reduction.com and djuber.tk so I think I'm fine). It looks viable. I'll probably setup cloudflare, and setup cloudns.net, and experiment. But that's starting to feel like at daytime activity.
+
