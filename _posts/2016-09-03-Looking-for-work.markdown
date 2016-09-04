@@ -26,10 +26,10 @@ a developer job. I am going to make that my goal for the next few months. If I n
 to dust off a few old books to get my mind wrapped into sorting arrays again, that's
 not so bad.
 
-The weirdest thing about looking for work is how little what I'm doing now, welll,
-translates into the checkboxes I'm seeing on requirements. I have started to just ignore
-the requirements blocks, like opening the service entrance door at the hotel, and walking
-into the kitchen. If you look like you're not lost, and look like you're not a customer,
+The weirdest thing about looking for work is how little what I'm doing now, and doing well,
+translates into the checkboxes I'm seeing on job requirements. I have started to just ignore the requirements blocks, like opening the service entrance door at the hotel, and walking into the kitchen. If you look like you're not lost, and look like you're not a customer,
 you might get far enough before anyone questions you.
 Working in lighting opened my eyes to the effectiveness of posted signs,
 and the general acceptance once you're on the other side of the door.
+
+I think once I get a little more ruby and rails under my belt, I will start toying with Puppet. We use ansible at work (or, someone else uses ansible, and I know it's there). The other giant project is going to be moving mail from my work vps. See [Mail Overflow](//2016/08/21/Mail-Overflow.html) to see how that worked out.
