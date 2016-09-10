@@ -49,3 +49,5 @@ I looked at other possible certifications. I see oracle offers both very expensi
   -    Describe and contrast characteristics of common MySQL high availability solutions (MySQL Cluster, DRBD, Windows Failover Clustering, Solaris Cluster, OVM Template for MySQL Enterprise)
 
 
+I'm not 100% convinced of the value of these certificates, I don't know that I see either very many MySQL administrator positions, or that these certificates are listed in either the requirements or the preferred qualifications lists.
+
