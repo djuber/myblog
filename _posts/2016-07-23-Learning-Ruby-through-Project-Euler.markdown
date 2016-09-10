@@ -15,5 +15,6 @@ language that facilitate computation.
 And since it's 2016 and not 2009, I'll be using unit tests, which Project Euler's
 problem descriptions almost always include some concrete examples to test against.
 
-I added a github repo [here](https://github.com/djuber/euler-ruby), I already had one from before [here](https://github.com/djuber/project-euler).
+I added a github repo [here](https://github.com/djuber/euler-ruby),
+I already had one from before [here](https://github.com/djuber/project-euler).
 

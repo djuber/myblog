@@ -1,0 +1,13 @@
+---
+layout: post
+date: 2016-09-06 11:30:00
+title: Bundle
+categories: 
+---
+I had been having problems with bundler on my desktop, but not my laptop. The symptom, as close
+as I could describe it, was that adding a library to the Gemfile and running bundle caused a segfault
+coming from the psych library. I was always able to address this by running ```gem install library_name``` and then running bundle, it seems to have been happy as long as it did not need to access the network. 
+
+I tracked down the issue thanks to a warning about thread safety in the version of gem shipped with centos 7. ```gem --version``` from my terminal gave 2.5.1 (this was using the rvm installed version), but /usr/bin/gem was installed by the OS. Checking ```which bundle``` shows this was a convenience script in ~/bin/bundle, and it started with ```#!/usr/bin/ruby``` which of course did something terrible. I had ffi links built for ruby 2.3.1 running from a call to ruby 2.0.0, and I'm suddenly surprised it worked as well as it did. 
+
+I've replaced the shebang line with ```#!/usr/bin/env ruby``` (a la python) and am much happier now.
