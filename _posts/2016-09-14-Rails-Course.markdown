@@ -18,3 +18,5 @@ apart from the fact that this was happening on every test. I found tests that ra
 without seed data taking in excess of one minute to run. Any test that takes more than a few seconds, or any suite that takes longer than 10s, will not become an automatic part of the development process. The instructions in the last assignment have a number of rspec 'checkpoints', after nesting, after setting up authentication, etc. A sizeable delay in the tests was cumbersome, and I cut until the pagination and end-to-end tests the sample size to 10 from 100, which made the test time closer to 6 seconds than 120. 
 
 So since I ploughed through that faster than I thought I might, I started the mongodb and rails course which is the third in their sequence. I also plumped the $79 for the single course certificate, and will need to resubmit the course work with the 'verification' enabled, which seems like it means I need to login from my laptop and use the webcam to smile while I type.
+
+I did get this shiny digital [certificate.](https://www.coursera.org/account/accomplishments/certificate/4F4PTUX5V9SA)
