@@ -26,5 +26,17 @@ CREATE TABLE sites (
        id int(11) NOT NULL,
        sitename varchar(64) DEFAULT NULL,
        PRIMARY KEY (id)
-       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
- ```
+       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+```
+
+So that's a first pass at a sites table. The documentation inside the (large) zip is that the dictionary keys are the sites (actually, it's a messy bit with path info tacked on, like 'anchors/past_year_and_half/www.chicagotribune.com_20150601000000.dille.com_20150601000000' instead of 'www.chicagotribune.com', but that's fixable). So the 64 char size is based on wanting to ad the shortened 'www.hollywoodreporter.com' name instead of the long anchors/ path.
+
+The next idea is that this dictionary has a [sites] -> url mapping, and [site, url] -> set of headlines mapping. A first approximation to map this from a dictionary to a set of tables in the database sounds like this in pseudo-DDL:
+
+```
+table sites: id, sitename
+table urls: id, site references sites.id, url
+table headlines: id, url references urls.id, headline
+```
+There are many sets with a single headline, and some sets with several headlines per story. The premise in the article was that news sites could change the headline, changing the perceived meaning of the article (and possibly changing the 'click rate'). They were training this against the newyorktimes and buzzworthy to detect 'clickbaiting'. I am just doing this as an example of database import, to get from one format to another.
