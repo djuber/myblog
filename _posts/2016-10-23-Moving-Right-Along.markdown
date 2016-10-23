@@ -2,7 +2,7 @@
 layout: post
 title: Moving Right Along
 categories: 
-date: 2016-10-2312:30 -0500
+date: 2016-10-23 12:30 -0500
 ---
 
 # Leaving WiredTree
