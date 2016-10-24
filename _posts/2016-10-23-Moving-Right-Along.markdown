@@ -31,9 +31,12 @@ you achieve it, specific in what needs to be done, and testable. I was able to l
 small experience I got from solving their problem to gain confidence and insight that translated
 into more well-rounded skills when I interviewed at Mbira.
 
+# Going to Mbira
+
 So I'm moving out of web hosting, into, well, more website hosting, but this time for one 
-site and all of it's IT. I'm pretty excited, it's going to be life changing to have 
-dinner together with Beth rather than lunches, and I look forward to filling my evenings
+site and all of its IT, no cpanel, and very limited external clients.
+I'm pretty excited, it's going to be life changing to have dinner together with Beth
+rather than lunches, and I look forward to filling my evenings
 with general nerdery. The computer crowd in Chicago has a rich network of meetups and 
 hack nights, geared toward the 9-5 downtown set, and I've been excluded from basically 
 everything since I started working shift work at WT. I'm glad to be back in the daylight. 
