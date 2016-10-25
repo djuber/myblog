@@ -39,4 +39,4 @@ from_base64_table[]=
 These sorts of raw mappings just look right. If you've read Applied Cryptography,
 this is reminiscent of about half of the code there (that's a lot of many ciphers).
 
-Well, I'll keep on reading, the Sasha Pachev internals book (while a bit dated, nearly 10 years old) probably reflects good portions of the high level organization (there is no innobase directory in the mariadb code, but that might be due to moving things around internally. The remarks about checking code out from bitkeeper (remember a world before github?) are quaint. 
+Well, I'll keep on reading, the Sasha Pachev internals book (while a bit dated, nearly 10 years old) probably reflects good portions of the high level organization, there is no innobase directory in the mariadb code, but that might be due to moving things around internally. The remarks about checking code out from bitkeeper (remember a world before github?) are quaint. 
