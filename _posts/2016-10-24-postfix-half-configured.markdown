@@ -4,7 +4,7 @@ date: 2016-10-24 22:43 -0500
 title: postfix half-configured
 categories: 
 ---
-Moving off my last vps, I undertook the fun task of configuring postfix. This is apparently
+Moving off my last vps, I undertook the fun task of configuring [postfix](http://postfix.org). This is apparently
 a straigtforward task in most cases, and I understand why I've made this difficult for myself. I installed, then abandoned clumsily, and installation of the iredmail project, when
 I learned that it really likes having a virgin system to install its own set of packages on.
 Since replacing nginx and postgresql with other versions was not going to happen,
