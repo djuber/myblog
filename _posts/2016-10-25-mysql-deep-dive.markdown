@@ -10,7 +10,7 @@ of functions like new defined to avoid requiring libstdc++.
 
 I really feel like reading C code sometimes is like peering into the machine. Witness this block from the base64 code:
 
-```
+{% highlight c %}
 static char base64_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                              "abcdefghijklmnopqrstuvwxyz"
                              "0123456789+/";
@@ -34,7 +34,8 @@ from_base64_table[]=
 /*E0*/  -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 /*F0*/  -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 };
-```
+{% endhighlight %}
+
 
 These sorts of raw mappings just look right. If you've read Applied Cryptography,
 this is reminiscent of about half of the code there (that's a lot of many ciphers).
