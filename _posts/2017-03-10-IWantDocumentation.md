@@ -25,5 +25,22 @@ Well, the solution here is to build your own (effectively, bypass the distributi
 I grabbed the git repo for screen, from [Savannah](https://savannah.gnu.org/git/?group=screen),
 and ran ```make && make install``` in src/doc. That was small, fast, and, to me, obvious.
 
-I feel bad for the users who lack this know-how, and disagree vehemently with Fedora for
+I feel bad for the users who lack this know-how, and disagree with Fedora for
 omitting this documentation from their repository packages.
+
+## The plot thickens
+
+I will add that, confusingly, the screen package does contain
+(both the fedora 25 base install,
+and the most recent 4.5.0 version) the info pages.
+Reinstalling the package replaces the screen.1.gz manpage,
+but /usr/share/info/screen.info.gz is still missing.
+I confirmed with rpm2cpio that the correct file
+and path are there. I checked my dnf.conf file, nothing surprising,
+and I can't find any option from
+[DNF's documentation](http://dnf.readthedocs.io/en/latest/conf_ref.html) that
+could disable info pages.
+
+So my reaction to blame the maintainer may have been misplaced. I'm still looking into this,
+but it's low on my list of priorities, since I've installed the binary and docs from
+the git repo.
