@@ -1,0 +1,32 @@
+---
+layout: post
+date: 2017-04-25 21:18 -0500
+title: Capybara book
+categories: ruby testing
+---
+
+I started reading "Application Testing with Capybara". Once again, the shifting sands of time have broken some of the code examples.
+
+First case, first example, in the step definitions on page 16, the book contains this:
+
+```
+   page.should have_content 'Largest Rodent'
+```
+
+I tried to do this, and got some sad results, that the `should method` does not exist on the `Cabybara::Session` object.
+I hooked in pry, and took a look at my options. While there are some `assert_text` and other possibilities, I ended up just adding rspec and calling this instead:
+
+```
+	expect(page).to have_content 'largest rodent'
+```
+
+The other thing I needed, which might be a change in how youtube sends results, was to sleep a second or two,
+as the click_on in the When step didn't seem to wait, or it looks like it did wait,
+but that the content of the page hadn't refreshed yet.
+I don't know if the html is updated by the search results differently now on youtube than it was when the book was written,
+if something changed in how selenium runs to trigger too soon, or if this was flaky when the author wrote it too.
+It's pretty stable now with a 2 second wait, but that seems like the wrong solution, and waiting for ready sounds better.
+The next pages going through the line by line indicate this is how things were supposed to work, so clearly something changed somewhere.
+I will say I see images of rodents on the search page before webdriver closes firefox, so it's quite nearly there. Neither `have_text` nor `have_content` seem to address the issue. I bet I just need to read on to figure out how to wait for ajax.
+
+Well, if I continue making progress on this, it will be on [github](https://github.com/djuber/capybara-demo).
