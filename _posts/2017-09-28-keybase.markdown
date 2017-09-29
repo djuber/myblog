@@ -1,0 +1,24 @@
+---
+layout: post
+date: 2017-09-28 22:17 -0500
+title: Keybase
+categories: internet
+---
+
+I was informed today that [Keybase](https://keybase.io/) had recently added group chat, and my company (a bunch of nerds) promptly started moving into chat on it. So here are my first thoughts.
+
+1) Chat's functional, if underwhelming. Think slack, but less polish. Probably a good thing. I don't know where all these cryptographically secure messages go, the communication goes through keybase, which was founded by the ok cupid creator, so it might be a giant scam. But a large enough scam becomes the future. But also think slack without a paywall for chat log history.
+
+2) File Sharing is dead simple. Think dropbox but not horrible. You can put files in public, in private, in teams (you can just create teams from the command line, nest subteams, nest sub-sub-teams). You can see a 250GB fuse mounted disk on /keybase, on every computer you connect, and all of your files are there.
+
+3) Connect your pgp keys. I'm not sure how this is used, and I'm a little leery that you actually give them a private key and a passphrase for this, but I assume this is used for some kinds of messaging. A brief look at early documents shows everything was initially just tied to getting pgp into the hands of the masses, so this is the unfriendly layer that is left over.
+
+4) Prove your identity. You can add gist to validate github, tweet to validate twitter, put a .well-known file to validate a website/domain, and a few other things.
+
+5) git repo hosting. Type `keybase help git` to see what's going on, it was functional, if a little slow. These don't seem to show up in /keybase, and I'm not sure if they're counting against the disk use. Repos can belong to persons or to teams, use a keybase:// url scheme for remotes, and I assume use their fork of [go-git](https://github.com/src-d/go-git). The clone/push process makes some noise about crypto, the local branches and local operations use your regular git porcelain.
+
+5) It's unclear how many of these things are tied to their servers, and how resilient this is.
+
+6) So far free. They don't have a concrete plan public about how to monetize.
+
+7) Public folders are available at keybase.pub, you can see [this blog](https://djuber.keybase.pub/) for example, and browse the [static files](https://keybase.pub/djuber). That's really just an nginx service with a willdcard cert and some rewrite rules to map subdomains to folders, but suffice it to say that anything you put in public is pretty immediately public. This is like github.io in a sense. I have not figured out a way to make a teams folders public, I think the intent is that you can share with team members, but not publish from a team to outsiders. I may be missing something.
