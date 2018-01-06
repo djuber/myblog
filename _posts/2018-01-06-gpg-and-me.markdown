@@ -1,0 +1,16 @@
+---
+layout: post
+date: 2018-01-06 11:16 -0500
+title: gpg and me
+categories:
+---
+I'm a fan of GPG, and I've started trying to use it more in the past year. I now sign all git commits (that's really easy via a global config option and github gives you a green "Verified" badge if you upload your public key to your profile, there are some rumblings around that it's just taking up space in the repo holding all the signatures).
+
+I use gpg with enigmail and thunderbird for secure communication (or had, more to follow). I use gpg in emacs via `epa` to handle encrption of regions or files. I've retired private keys and I've
+renewed them.
+
+I think it's great to see that at least minimal use of gpg is required for debian commiters. From https://wiki.debian.org/OpenPGP:
+
+> When joining the Debian project, developers need to identify themselves by providing an OpenPGP key that is signed by at least two existing members of the project.
+
+I'm a little sad that the newest versions of thunderbird don't work with enigmail (sadly, enigmail is installed, and the buttons and menus are present, but no action is taken). I received an encrypted email from a friend, and just saw some base64 garbage. Fiddling with the options in enigmail, I started composing a reply, but sent to myself a minimal version just to check that this would work (it did not). Ultimately, I just copied the content to an emacs buffer, called `epa-decrypt-region`, composed a reply, called `epa-encrypt-region`, selected the recipient key, and sent. I am now on the lookout for a new mail client with better gpg support.
