@@ -1,0 +1,17 @@
+---
+layout: post
+date: 2018-04-29 03:52 -0500
+title: Paranoia, and Musings
+categories:
+---
+I every time wonder whether a new technology is actually undermining a prior one. Tools like Keybase or IPFS, while they're open source, are new, probably haven't had a ton of scrutiny (or, have not had any auditing from people I know or trust), and get dangerously close to the system.
+
+Does the NSA use services promising more security to undermine security? Why wouldn't they?
+
+Keybase.io asks for your *private* key, which basically means all of your pgp conversations are insecure, past, present, and future. By managing key generation, this service undermines the single most important underpinning of pgp, that the user alone controls their key, and this unique control provides the security of the system.
+
+IPFS so far has not commited any egregiously bad sins, it looks more like what TOR was in the early days (I ran an exit node over a home connection for about 6 months in 2007, until the traffic overwhelmed my cheap consumer router). The best part about this, in contrast to keybase.io, is that they're building tools and not a product, it feels more like redis or memcache, just a dumb store, when you use it, and the "magic" that handles distribution and resolution are background concerns.
+
+If local operation were low enough latency, and encryption were cheap enough, you could probably use this in place of mongo, you issue a put, and get a key. With redis, you put data in a chosen key (which is super useful when the key is type:id:attribute, like user:1000:email), but if you are okay holding a hash as a link to the data, then ipfs seems like a datastore. I think for replication it might not be optimal - but could be if the source node is embedded in the id in some case (this is testable, start two instances on separate machines, and add two indistinguishable copies of the same data via, and confirm whether the hashes are distinct or not.
+
+On the other end, the network relies on either source permanence, keeping the stored data on the source node, or replication, to keep data available. In the worst case, the most popular resources will be preserved (think LRU cache), and some data on the edges will disappear. That's not hugely different from how bittorrent works with the long tail (it's fast and easy to download the same file everyone wants, and hit or miss whether obscure files will have any seeders).
