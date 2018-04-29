@@ -1,0 +1,17 @@
+---
+layout: post
+date: 2018-04-29 02:40 -0500
+title: ipfs
+categories:
+---
+I did some reading and video watching on ipfs. I'm impressed (partly because so far it just works, partly because it looks to be the result of a man on a mission).
+
+A lot of what keybase does, ipfs does insecurely, but in a decentralized manner. Looking under the hoods, it seems there are a few bootstrap servers used for finding peers or joining the network, but in three tests I had several hundred peers in a few minutes. Traffic levels didn't seem unusual.
+
+On a webserver I did notice traffic on port 4001 needed to be allowed (please tell me you do egress and ingress filtering?) before I could join the network, but once that was done everything just lined up. I spot checked from the ipv6 available server, of about 750 peers, all were still ipv4 (will linux on the desktop or ipv6 come first...).
+
+Spot checking, creating a file on a non-peered server in New York, and typing its hash in my local ui gave very fast resolution (it took me way longer to copy/paste the result hash than it did to resolve it). While they advertise this as alpha, it seems like it works pretty robustly for small setups.
+
+There's no explicit guarantees either of anonymity or of data protection, if you want access controls, you want to implement those on top of this system  -- this is more like a public bulletin board than a limited access shared folder, you want to either use gpg, or some other control, to ensure that things you didn't mean to share with everyone forever in a potentially irrevocable manner  don't get plastered into the worlds collective memory.
+
+Speaking of immediately available and public information, you can fetch my public key from [ipfs](https://ipfs.io/ipfs/QmRCPEouvqu9utJ5B194gmfBYMhKE1wJqXTqU1QrdKe8ku) here.
