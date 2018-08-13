@@ -6,7 +6,7 @@ categories:
 ---
 For about four years I was afraid. I was worried enough about change being difficult that I contemplated moving the technology rather than cleaning up the mess.
 
-I was changing prod and copying back to the source code repo.
+I was changing code in an ssh session in production, and copying back to the source code repo.
 That repo was in mercurial because in 2014 that wasn't yet a horrible choice. Everything else I use is in git and this means just trying to commit and merge this project takes extra mental overhead.
 
 I have 1100+ days of uptime on a wheezy server that I'm not sure will reboot cleanly. I'm running production from a sqlite file since I got weird errors (probably 100% tied to passwords and auth, or migrations) when running on a real database server. I am nervous about migrations so I try not to change existing tables out of fear of hard to diagnose errors.
