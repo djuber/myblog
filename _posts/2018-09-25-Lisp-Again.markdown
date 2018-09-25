@@ -16,3 +16,7 @@ The program fetches json from a service (DivvyBike in Chicago) - parses json to 
 The ruby original generates html programmatically, I used djula templates in this case instead. I used dexador and jsown (recommended from the awesome list) for the fetch and parse steps. The lisp version is longer than the ruby version - I think that's generally true, but at least half of that was not knowing where I was going and having become completely unfamiliar with the feel of lisp after a few years of not working with it.
 
 Source code published to [notabug](https://notabug.org/djuber/divvy/).
+
+Ruby version updates to [here](https://beta-reduction.com/divvy.html).
+
+Parting thoughts - getting Djula to find the template directory seemed harder than I wanted it to be. Getting lisp to write to the correct directory (or figuring out how to make a path from a directory and a filename) were more than I wanted to invest time in for this - so I punted and ended up writing to tmp.
