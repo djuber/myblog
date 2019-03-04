@@ -60,3 +60,5 @@ I have not tried just changing the user agent string to be a far distant unrelea
 # Notes
 
 My apologies to all involved (yes, that's nice, you use arch) about the loose language around "rolling release" as it applies to Fedora's packaging.
+
+I'll apologize to Duo when they make this better.
