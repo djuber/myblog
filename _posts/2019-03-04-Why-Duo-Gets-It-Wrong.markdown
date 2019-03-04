@@ -5,7 +5,7 @@ title: Why Duo Gets It Wrong
 categories:
 ---
 
-I have been thinking about the (minor nuisance/debilitating denial of service) we experience based on [Duo Security](https://duo.com)'s version checks for browsers at my work.
+I have been thinking about the (minor nuisance/debilitating denial of service) we experience based on [Duo Security](https://duo.com)'s version checks for browsers at my work, particularly for those of us using Firefox on Fedora Linux.
 
 # Overly Simplistic Messaging
 Duo doesn't really give you a hint how to pass the check when you're failing. The "required version" says "current version", and the link giving generic instructions on how to update assumes you installed from the browser vendor and will update from the same path. It's often hard to find the release schedule for software, I've searched for [Chromium](https://www.chromium.org/developers/calendar) and determining the current version or the next version release date appears to be more involved than expected, in other cases I've found Wikipedia to be the only reliable source of this information without looking in multiple places on the vendor's site.
