@@ -61,4 +61,4 @@ I have not tried just changing the user agent string to be a far distant unrelea
 
 My apologies to all involved (yes, that's nice, you use arch) about the loose language around "rolling release" as it applies to Fedora's packaging.
 
-I'll apologize to Duo when they make this better.
+I'll apologize to Duo when they make this better. I haven't even touched on their other strange choices (like suggesting biometrics on phones are a [secure alternative](https://arxiv.org/pdf/1705.07386.pdf) to passwords).
