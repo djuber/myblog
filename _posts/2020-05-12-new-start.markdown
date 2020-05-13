@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "New Start"
+date:   2020-05-12
+categories: ruby
+---
+
+I'm starting a new role tomorrow as a developer.
+I'm a little concerned about the need to appease a project manager,
+but I have a good feeling about the team and its place in the company, I understand the project
+they're (we're) working on, and I'm excited to actually get to work on specific tasks.
+
+It's partly a shift in direction from what I had been doing, partly a resumé control action (I don't want to get more invitations to connect about systems engineering or site reliability roles right now) and largely a realignment of what I'm already doing with a group thinking about the same problems.
+
+In the end, it's all about doing your best work with smart people you like being around. Someday in the future maybe we'll be together in one place again.
