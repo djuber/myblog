@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Drop index needs a schema"
-date:   2021-01-12 18:50:00
+date:   2021-01-12 12:50:00
 categories: postgresql
 ---
 
