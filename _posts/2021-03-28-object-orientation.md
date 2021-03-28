@@ -24,3 +24,9 @@ I'd love to love clojure, but I can't care enough about it to overcome the diffe
 
 I had exposure to typescript at my last job. I didn't make use of that and treated it as a funny tooling in front of JS. That's probably fine for some kinds of maintenance, I understand you can't work or think that way in development.
 
+I feel as though 5 years ago I thought of programming in terms of building enough definitions (the way a math proof flows) and the functions really just as definitions, and message sending paradigms have changed the way I _think_ about code, the way I think about problem decomposition, and I'm not sure it's for the better. 
+
+One thing I will say for Ruby though, they did go all in on aesthetics (don't look too closely at some of the standard library), user programs are typically really good at being close to the domain and clutter free. 
+
+I think languages that allow users to move the boilerplate/annotations out of the source files, and encourage small code artifacts (in ruby that's a class or module, but in other languages it could be a module or package or something). I'm alluding to the distinction between declaration/definition - forward declarations of functions and their type information, while repeated within the definition in C, is shared via the header files, and typedefs are almost only ever in headers, I think ML may use interfaces to describe this, and common lisp at least settled on a common pattern of "package information goes local to the package, system information goes elsewhere" to ensure a file is a compilable unit without sequencing (definitely not needed, if you wanted to spread a package over multiple files you could, put an `in-package` at the beginning of each file, and ensure the file defining the package and its exports is loaded before the others).
+
